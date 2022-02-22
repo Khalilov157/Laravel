@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\laptimesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +24,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('user', UserController::class);
 
+Route::post('Register', [UserController::class, 'store']);
+
 Route::post('add', [UserController::class, 'store']);
 
 Route::get('goster/{id}', [UserController::class, 'goster']);
 
 Route::resource('Kitabelavesi', BooksController::class);
+
+Route::resource('lap', laptimesController::class );

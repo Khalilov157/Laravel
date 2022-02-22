@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\laptimes;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class laptimesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return User::with('book')->with('laptimes')->get();
-
+        return laptimes::with('racer')->get();
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -37,11 +35,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user=new User();
-        $user->fill($request->all());
-        $user->password=bcrypt($request->password);
-        $user->save();
-        return response()->json(['msg' => 'Salam dostlar']);
+        $laptime = new laptimes();
+        $laptime-> fill($request->all());
+        $laptime-> save();
+        return 'Laptime added';
+
+
     }
 
     /**
@@ -50,14 +49,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-     public function goster($id){
-         return $id;
-     }
     public function show($id)
     {
-        // return User::findOrFail($id);
-        return $id;
+        //
     }
 
     /**
@@ -80,11 +74,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user-> fill($request-> all());
-        $user-> save();
-
-        return 'alindi';
+        //
     }
 
     /**
@@ -95,8 +85,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user -> delete();
-        return 'user getdi';
+        //
     }
 }
